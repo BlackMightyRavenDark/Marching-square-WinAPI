@@ -50,13 +50,21 @@ static bool fillCircle(HDC dc, POINT positionCenter, int radius, HBRUSH brush = 
 	return fillCircle(dc, positionCenter.x, positionCenter.y, radius, brush);
 }
 
+static bool drawString(HDC dc, int x, int y, LPCWSTR textString, int textStringLength, COLORREF color)
+{
+	SetTextColor(dc, color);
+	return TextOut(dc, x, y, textString, textStringLength);
+}
+
 static void drawLetters(HDC dc)
 {
-	SetTextColor(dc, RGB(255, 255, 255));
-	TextOut(dc, square.a.position.x - 20, square.a.position.y + square.a.radius, L"A", 1);
-	TextOut(dc, square.b.position.x + 20, square.b.position.y + square.b.radius, L"B", 1);
-	TextOut(dc, square.c.position.x + 20, square.c.position.y - square.c.radius - 12, L"C", 1);
-	TextOut(dc, square.d.position.x - 20, square.d.position.y - square.d.radius - 15, L"D", 1);
+	COLORREF white = RGB(255, 255, 255);
+	COLORREF red = RGB(255, 0, 0);
+
+	drawString(dc, square.a.position.x - 20, square.a.position.y + square.a.radius     , L"A", 1, square.a.hovered ? red : white);
+	drawString(dc, square.b.position.x + 20, square.b.position.y + square.b.radius     , L"B", 1, square.b.hovered ? red : white);
+	drawString(dc, square.c.position.x + 20, square.c.position.y - square.c.radius - 12, L"C", 1, square.c.hovered ? red : white);
+	drawString(dc, square.d.position.x - 20, square.d.position.y - square.d.radius - 15, L"D", 1, square.d.hovered ? red : white);
 
 	SetTextColor(dc, RGB(255, 255, 0));
 	TextOut(dc, square.e.x - 4, square.e.y + 15, L"E", 1);
