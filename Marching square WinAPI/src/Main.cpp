@@ -1,5 +1,8 @@
 #include <Windows.h>
 #include <iostream>
+#ifdef __GNUC__
+#include <cmath>
+#endif
 
 struct MarchingSquareCorner
 {
@@ -472,7 +475,11 @@ static LRESULT CALLBACK mainWndProc(HWND hWnd, UINT uMessage, WPARAM wParam, LPA
 	return DefWindowProc(hWnd, uMessage, wParam, lParam);
 }
 
+#ifdef __GNUC__
+int wmain()
+#else
 int main()
+#endif
 {
 	const LPCWSTR MY_CLASS = L"winapi_window_class";
 	const LPCWSTR MY_TITLE = L"Marching square WinAPI";
