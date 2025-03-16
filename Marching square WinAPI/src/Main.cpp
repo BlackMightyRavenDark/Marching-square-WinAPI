@@ -50,6 +50,21 @@ static bool fillCircle(HDC dc, POINT positionCenter, int radius, HBRUSH brush = 
 	return fillCircle(dc, positionCenter.x, positionCenter.y, radius, brush);
 }
 
+static void drawLetters(HDC dc)
+{
+	SetTextColor(dc, RGB(255, 255, 255));
+	TextOut(dc, square.a.position.x - 20, square.a.position.y + square.a.radius, L"A", 1);
+	TextOut(dc, square.b.position.x + 20, square.b.position.y + square.b.radius, L"B", 1);
+	TextOut(dc, square.c.position.x + 20, square.c.position.y - square.c.radius - 12, L"C", 1);
+	TextOut(dc, square.d.position.x - 20, square.d.position.y - square.d.radius - 15, L"D", 1);
+
+	SetTextColor(dc, RGB(255, 255, 0));
+	TextOut(dc, square.e.x - 4, square.e.y + 15, L"E", 1);
+	TextOut(dc, square.f.x + 15, square.f.y - 7, L"F", 1);
+	TextOut(dc, square.g.x - 4, square.g.y + 15, L"G", 1);
+	TextOut(dc, square.h.x - 25, square.h.y - 7, L"H", 1);
+}
+
 static void drawState(HDC dc, RECT* panelRectangle)
 {
 	SetBkMode(dc, TRANSPARENT);
@@ -254,6 +269,7 @@ static void renderSquare(HDC dc, RECT* panelRectangle)
 	drawIsolines(dc);
 
 	drawState(dc, panelRectangle);
+	drawLetters(dc);
 }
 
 static bool render(HWND panel)
