@@ -481,7 +481,7 @@ int wmain()
 int main()
 #endif
 {
-	const LPCWSTR MY_CLASS = L"winapi_window_class";
+	const LPCWSTR MY_CLASS = L"marching_square_winapi_window_class";
 	const LPCWSTR MY_TITLE = L"Marching square WinAPI";
 	const HINSTANCE selfInstance = GetModuleHandle(NULL);
 
